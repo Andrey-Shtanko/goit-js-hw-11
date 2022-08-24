@@ -16,6 +16,7 @@ searchBtn.addEventListener(`click`, onSubmit);
 
 let searchQuery;
 let page = 1;
+let lightbox;
 
 function onInput(event) {
   searchQuery = event.target.value;
@@ -42,6 +43,7 @@ function onSubmit(event) {
       for (let i = 0; i < hits.length; i += 1) {
         gallery.insertAdjacentHTML(`beforeend`, markUpForGallery(hits[i]));
       }
+      lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250 });
       if (hits.length < 40) {
         Notiflix.Notify.info(
           "We're sorry, but you've reached the end of search results."
@@ -65,6 +67,8 @@ function onLoadMore() {
       for (let i = 0; i < hits.length; i += 1) {
         gallery.insertAdjacentHTML(`beforeend`, markUpForGallery(hits[i]));
       }
+      // var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250 });
+      lightbox.refresh();
       if (hits.length < 40) {
         Notiflix.Notify.info(
           "We're sorry, but you've reached the end of search results."

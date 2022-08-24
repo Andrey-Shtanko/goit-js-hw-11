@@ -1,5 +1,5 @@
 :root {
-  --timing-function: cubic-bezier(.4, 0, .2, 1);
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   --animation-duration: 250ms;
 }
 
@@ -91,43 +91,42 @@ body {
   fill: black;
 }
 
-
-.gallery{
+.gallery {
   display: flex;
   flex-wrap: wrap;
   margin-left: -30px;
-   
 }
 
-.photo-card{
+.photo-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: calc(100% / 4 - 30px);
   margin-left: 30px;
-    margin-top: 30px;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-        1px 4px 6px rgba(0, 0, 0, 0.16);
-   transition: transform var(--animation-duration)var(--timing-function);
-  
+  margin-top: 30px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16);
+  transition: transform var(--animation-duration) var(--timing-function);
 }
-.photo-card:hover{
-      transform: scale(1.03);
+.photo-card:hover {
+  transform: scale(1.03);
 }
 
-img{
+img {
   height: 100%;
-  display:inline-block;
+  display: inline-block;
 }
 
-.info{
+.info {
   display: flex;
   justify-content: space-around;
 }
 
-.info-item{
+.info-item {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
+.image-link {
+  display: flex;
+}

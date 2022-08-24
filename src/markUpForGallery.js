@@ -7,7 +7,7 @@ export default function markUpForGallery({
   comments,
   downloads,
 }) {
-  return `<div class="photo-card">
+  return `<a class="photo-card" href="${largeImageURL}" >
         <img src="${webformatURL}" alt="${tags}" loading="lazy" />
         <div class="info">
           <p class="info-item">
@@ -23,5 +23,5 @@ export default function markUpForGallery({
             <b>Downloads</b>${downloads}
           </p>
         </div>
-      </div>`;
+      </a>`;
 }
