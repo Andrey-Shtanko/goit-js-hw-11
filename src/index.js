@@ -36,8 +36,9 @@ function onSubmit(event) {
         Notiflix.Notify.failure(
           `Sorry, there are no images matching your search query. Please try again.`
         );
+        return;
       }
-      Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
+      Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
       for (let i = 0; i < hits.length; i += 1) {
         gallery.insertAdjacentHTML(`beforeend`, markUpForGallery(hits[i]));
       }
