@@ -14,7 +14,6 @@ const gallery = document.querySelector(`.gallery`);
 searchInput.addEventListener(`input`, onInput);
 searchBtn.addEventListener(`click`, onSubmit);
 
-
 let searchQuery;
 let page = 1;
 
@@ -40,6 +39,22 @@ function onSubmit(event) {
         gallery.insertAdjacentHTML(`beforeend`, markUpForGallery(hits[i]));
       }
       loadMoreBtn.classList.remove(`is-hidden`);
+    })
+    .catch(error => console.log(error));
+}
+
+loadMoreBtn.addEventListener(`click`, onLoadMore);
+
+function onLoadMore() {
+  page += 1;
+  fetchByQuery(searchQuery, page)
+    .then(response => {
+      const {
+        data: { hits },
+      } = response;
+      for (let i = 0; i < hits.length; i += 1) {
+        gallery.insertAdjacentHTML(`beforeend`, markUpForGallery(hits[i]));
+      }
     })
     .catch(error => console.log(error));
 }
