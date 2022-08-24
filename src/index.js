@@ -22,11 +22,11 @@ function onInput(event) {
   searchQuery = event.target.value;
 }
 
-function onSubmit(event) {
+function onSubmit(e) {
+  e.preventDefault();
   loadMoreBtn.classList.add(`is-hidden`);
   gallery.innerHTML = ``;
   page = 1;
-  event.preventDefault();
   fetchByQuery(searchQuery, page)
     .then(response => {
       const {
@@ -43,6 +43,7 @@ function onSubmit(event) {
       for (let i = 0; i < hits.length; i += 1) {
         gallery.insertAdjacentHTML(`beforeend`, markUpForGallery(hits[i]));
       }
+
       lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250 });
       if (hits.length < 40) {
         Notiflix.Notify.info(
@@ -67,7 +68,15 @@ function onLoadMore() {
       for (let i = 0; i < hits.length; i += 1) {
         gallery.insertAdjacentHTML(`beforeend`, markUpForGallery(hits[i]));
       }
-      // var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250 });
+      const { height: cardHeight } = document
+        .querySelector('.gallery')
+        .firstElementChild.getBoundingClientRect();
+
+      window.scrollBy({
+        top: cardHeight * 2,
+        behavior: 'smooth',
+      });
+
       lightbox.refresh();
       if (hits.length < 40) {
         Notiflix.Notify.info(
