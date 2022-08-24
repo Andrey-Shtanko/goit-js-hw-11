@@ -22,6 +22,7 @@ function onInput(event) {
 }
 
 function onSubmit(event) {
+  loadMoreBtn.classList.add(`is-hidden`);
   gallery.innerHTML = ``;
   page = 1;
   event.preventDefault();
@@ -37,6 +38,12 @@ function onSubmit(event) {
       }
       for (let i = 0; i < hits.length; i += 1) {
         gallery.insertAdjacentHTML(`beforeend`, markUpForGallery(hits[i]));
+      }
+      if (hits.length < 40) {
+        Notiflix.Notify.info(
+          "We're sorry, but you've reached the end of search results."
+        );
+        return;
       }
       loadMoreBtn.classList.remove(`is-hidden`);
     })
@@ -54,6 +61,12 @@ function onLoadMore() {
       } = response;
       for (let i = 0; i < hits.length; i += 1) {
         gallery.insertAdjacentHTML(`beforeend`, markUpForGallery(hits[i]));
+      }
+      if (hits.length < 40) {
+        Notiflix.Notify.info(
+          "We're sorry, but you've reached the end of search results."
+        );
+        loadMoreBtn.classList.add(`is-hidden`);
       }
     })
     .catch(error => console.log(error));
