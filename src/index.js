@@ -13,9 +13,7 @@ const gallery = document.querySelector(`.gallery`);
 
 searchInput.addEventListener(`input`, onInput);
 searchBtn.addEventListener(`click`, onSubmit);
-const searchInput = document.querySelector(`input`)
-const searchBtn = document.querySelector(`.search-btn`)
-const loadMoreBtn = document.querySelector(`.load-more`)
+
 
 let searchQuery;
 let page = 1;
