@@ -29,13 +29,15 @@ function onSubmit(event) {
   fetchByQuery(searchQuery, page)
     .then(response => {
       const {
-        data: { hits },
+        data: { hits, totalHits },
       } = response;
+
       if (hits.length === 0) {
         Notiflix.Notify.failure(
           `Sorry, there are no images matching your search query. Please try again.`
         );
       }
+      Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
       for (let i = 0; i < hits.length; i += 1) {
         gallery.insertAdjacentHTML(`beforeend`, markUpForGallery(hits[i]));
       }
